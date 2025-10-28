@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@expo-google-fonts/lobster-two": "^0.4.1",
+    "@expo-google-fonts/saira": "^0.4.1"
+  }
+}

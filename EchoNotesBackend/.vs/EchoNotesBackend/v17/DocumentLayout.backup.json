@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kuwak\\source\\repos\\EchoNotesBackend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A466695F-3AD7-4A59-8AA9-71F06A1B0453}|EchoNotesBackend\\EchoNotesBackend.csproj|c:\\users\\kuwak\\source\\repos\\echonotesbackend\\echonotesbackend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A466695F-3AD7-4A59-8AA9-71F06A1B0453}|EchoNotesBackend\\EchoNotesBackend.csproj|solutionrelative:echonotesbackend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A466695F-3AD7-4A59-8AA9-71F06A1B0453}|EchoNotesBackend\\EchoNotesBackend.csproj|c:\\users\\kuwak\\source\\repos\\echonotesbackend\\echonotesbackend\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A466695F-3AD7-4A59-8AA9-71F06A1B0453}|EchoNotesBackend\\EchoNotesBackend.csproj|solutionrelative:echonotesbackend\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A466695F-3AD7-4A59-8AA9-71F06A1B0453}|EchoNotesBackend\\EchoNotesBackend.csproj|c:\\users\\kuwak\\source\\repos\\echonotesbackend\\echonotesbackend\\echonotesbackend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{A466695F-3AD7-4A59-8AA9-71F06A1B0453}|EchoNotesBackend\\EchoNotesBackend.csproj|solutionrelative:echonotesbackend\\echonotesbackend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A466695F-3AD7-4A59-8AA9-71F06A1B0453}|EchoNotesBackend\\EchoNotesBackend.csproj|c:\\users\\kuwak\\source\\repos\\echonotesbackend\\echonotesbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A466695F-3AD7-4A59-8AA9-71F06A1B0453}|EchoNotesBackend\\EchoNotesBackend.csproj|solutionrelative:echonotesbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\kuwak\\source\\repos\\EchoNotesBackend\\EchoNotesBackend\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "EchoNotesBackend\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\kuwak\\source\\repos\\EchoNotesBackend\\EchoNotesBackend\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "EchoNotesBackend\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T20:43:22.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\kuwak\\source\\repos\\EchoNotesBackend\\EchoNotesBackend\\Dockerfile",
+              "RelativeDocumentMoniker": "EchoNotesBackend\\Dockerfile",
+              "ToolTip": "C:\\Users\\kuwak\\source\\repos\\EchoNotesBackend\\EchoNotesBackend\\Dockerfile",
+              "RelativeToolTip": "EchoNotesBackend\\Dockerfile",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-10-26T20:30:46.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\kuwak\\source\\repos\\EchoNotesBackend\\EchoNotesBackend\\Program.cs",
+              "RelativeDocumentMoniker": "EchoNotesBackend\\Program.cs",
+              "ToolTip": "C:\\Users\\kuwak\\source\\repos\\EchoNotesBackend\\EchoNotesBackend\\Program.cs",
+              "RelativeToolTip": "EchoNotesBackend\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T20:29:47.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EchoNotesBackend.http",
+              "DocumentMoniker": "C:\\Users\\kuwak\\source\\repos\\EchoNotesBackend\\EchoNotesBackend\\EchoNotesBackend.http",
+              "RelativeDocumentMoniker": "EchoNotesBackend\\EchoNotesBackend.http",
+              "ToolTip": "C:\\Users\\kuwak\\source\\repos\\EchoNotesBackend\\EchoNotesBackend\\EchoNotesBackend.http",
+              "RelativeToolTip": "EchoNotesBackend\\EchoNotesBackend.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-10-26T20:18:47.454Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
