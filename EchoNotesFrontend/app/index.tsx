@@ -146,6 +146,7 @@ export default function Index() {
           <Text style={styles.menuButtonText}>☰</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>EchoNotes</Text>
+        {!isLargeScreen && <View style={styles.headerRightPlaceholder} />}
       </View>
       <View style={styles.main}>
         {isMenuVisible && (
@@ -190,6 +191,9 @@ const styles = StyleSheet.create({
     },
     menuButton: {
         padding: 10,
+        width: 44, // Explicit width for consistent centering
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     menuButtonText: {
         fontSize: 24,
@@ -199,6 +203,9 @@ const styles = StyleSheet.create({
         fontFamily: 'LobsterTwo_700Bold',
         textAlign: 'center',
         flex: 1,
+    },
+    headerRightPlaceholder: {
+        width: 44, // Same width as menuButton for balancing
     },
     main: {
         flex: 1,
