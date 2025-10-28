@@ -105,7 +105,6 @@ export default function Index() {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <View style={{ flex: 1 }}>
                 <Text style={styles.noteListItemTitle} numberOfLines={1}>{item.title || 'New Note'}</Text>
-                <Text style={styles.noteListItemContent} numberOfLines={1}>{item.content}</Text>
               </View>
               {activeNote?.id === item.id && (
                 <TouchableOpacity onPress={() => handleDelete(item.id)} style={styles.deleteNoteButton}>
@@ -224,13 +223,14 @@ const styles = StyleSheet.create({
         padding: 15,
         borderBottomWidth: 1,
         borderBottomColor: '#ddd',
-        backgroundColor: '#007BFF',
+        backgroundColor: '#eee'
     },
     newNoteButtonText: {
         fontSize: 18,
         fontFamily: 'Abel_400Regular',
+        fontWeight: 'bold',
         textAlign: 'center',
-        color: 'white',
+        color: '#000',
     },
     noteListItem: {
         padding: 15,
