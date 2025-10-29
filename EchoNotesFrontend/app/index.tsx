@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'; // Import useRef
-import { View, Text, Button, FlatList, StyleSheet, TextInput, TouchableOpacity, Dimensions, Platform, Modal, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, Button, FlatList, StyleSheet, TextInput, TouchableOpacity, Dimensions, Platform, Modal } from 'react-native';
 
 interface Note {
   id: string;
