@@ -4,18 +4,19 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 8083
+EXPOSE 8082
 
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["EchoNotesBackend/EchoNotesBackend.csproj", "EchoNotesBackend/"]
-RUN dotnet restore "./EchoNotesBackend/EchoNotesBackend.csproj"
+COPY ["EchoNotesBackend.csproj", "."]
+RUN dotnet restore "./EchoNotesBackend.csproj"
 COPY . .
-WORKDIR "/src/EchoNotesBackend"
+ENV ASPNETCORE_HTTP_PORTS=8083
+ENV ASPNETCORE_HTTPS_PORTS=8082
 RUN dotnet build "./EchoNotesBackend.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
@@ -27,4 +28,6 @@ RUN dotnet publish "./EchoNotesBackend.csproj" -c $BUILD_CONFIGURATION -o /app/p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV ASPNETCORE_HTTP_PORTS=8083
+ENV ASPNETCORE_HTTPS_PORTS=8082
 ENTRYPOINT ["dotnet", "EchoNotesBackend.dll"]

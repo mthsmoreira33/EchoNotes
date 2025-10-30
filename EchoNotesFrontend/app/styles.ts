@@ -95,8 +95,7 @@ export const styles = StyleSheet.create({
         outlineWidth: 0,
     },
     deleteButton: {
-        marginTop: 10,
-        padding: 10,
+        padding: 5,
         backgroundColor: 'red',
         borderRadius: 5,
         alignItems: 'center',
@@ -136,7 +135,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoButton: {
-        backgroundColor: 'yellow',
+        padding: 10,
+        backgroundColor: '#d8ca00ff',
         borderRadius: 12,
         width: 24,
         height: 24,

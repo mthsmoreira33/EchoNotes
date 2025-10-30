@@ -40,7 +40,7 @@ export default function NoteList({ notes, activeNote, noteListRenderKey, handleS
                                         <Text style={styles.deleteNoteButtonText}>X</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={() => handleInfoPress(index)} style={styles.infoButton}>
-                                        <Ionicons name="information-circle-outline" size={20} color="black" />
+                                        <Ionicons name="information-circle-outline" size={20} color="white" />
                                     </TouchableOpacity>
                                 </View>
                             )}

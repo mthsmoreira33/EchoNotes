@@ -28,7 +28,7 @@ export default function Index() {
 
                 try {
 
-                    const response = await fetch('https://localhost:32771/api/Notes');
+                    const response = await fetch('http://localhost:8083/api/Notes');
 
                     console.log("Fetch response status:", response.status);
 
