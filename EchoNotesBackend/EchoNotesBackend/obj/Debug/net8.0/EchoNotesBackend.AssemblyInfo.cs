@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EchoNotesBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+998b92517384c28a2d4f11db93a99c781f1c0feb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb379f6724561ad7149efffce21b3dc6a5fc61a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("EchoNotesBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EchoNotesBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
