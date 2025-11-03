@@ -31,6 +31,13 @@ namespace EchoNotesBackend.Controllers
             return CreatedAtAction(nameof(GetNotes), new { id = createdNote.Id }, createdNote);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteNote(Guid id)
+        {
+            await _noteService.DeleteNoteAsync(id);
+            return NoContent();
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateNote(Guid id, UpdateNoteDto updateNoteDto)
         {
@@ -40,13 +47,6 @@ namespace EchoNotesBackend.Controllers
             }
 
             await _noteService.UpdateNoteAsync(id, updateNoteDto);
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteNote(Guid id)
-        {
-            await _noteService.DeleteNoteAsync(id);
             return NoContent();
         }
     }

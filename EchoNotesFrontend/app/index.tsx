@@ -187,21 +187,27 @@ export default function Index() {
                 throw new Error('Network response was not ok');
             }
 
-            const newNotes = notes.filter(note => note.id !== id);
-            setNotes(newNotes);
+            setNotes(prevNotes => {
+                const newNotes = prevNotes.filter(note => note.id !== id);
+                if (activeNoteRef.current && activeNoteRef.current.id === id) {
+                    if (newNotes.length > 0) {
+                        setActiveNote(newNotes[0]);
+                        setTitle(newNotes[0].title);
+                        setContent(newNotes[0].content);
+                    } else {
+                        setActiveNote(null);
+                        setTitle('');
+                        setContent('');
+                    }
+                }
+                return newNotes;
+            });
             setNoteListRenderKey(prevKey => prevKey + 1);
 
-            if (activeNote && activeNote.id === id) {
-                if (newNotes.length > 0) {
-                    handleSelectNote(newNotes[0]);
-                } else {
-                    handleNewNote();
-                }
-            }
         } catch (error) {
             console.error(`Failed to delete note with id ${id}:`, error);
         }
-    }, [activeNote, notes, handleSelectNote, handleNewNote]);
+    }, []);
 
     const titleInputRef = useRef<TextInput>(null);
 
