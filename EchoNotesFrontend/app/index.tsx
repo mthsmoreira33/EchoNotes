@@ -62,147 +62,155 @@ export default function Index() {
 
     
 
-        const handleSave = useCallback(() => {
+    const activeNoteRef = useRef(activeNote);
+    activeNoteRef.current = activeNote;
 
-            if (title.trim() === '' && content.trim() === '') {
+    const notesRef = useRef(notes);
+    notesRef.current = notes;
 
-                return;
+    const titleRef = useRef(title);
+    titleRef.current = title;
 
+    const contentRef = useRef(content);
+    contentRef.current = content;
+
+    const handleSave = async () => {
+        const currentActiveNote = activeNoteRef.current;
+        console.log("handleSave - currentActiveNote:", currentActiveNote);
+        const currentNotes = notesRef.current;
+        const currentTitle = titleRef.current;
+        const currentContent = contentRef.current;
+
+        if (!currentActiveNote && (currentTitle.trim() !== '' || currentContent.trim() !== '')) {
+            try {
+                const response = await fetch('http://localhost:8083/api/Notes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ title: currentTitle, content: currentContent }),
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const newNote = await response.json();
+                setNotes(prevNotes => [newNote, ...prevNotes]);
+                setActiveNote(newNote);
+                setNoteListRenderKey(prevKey => prevKey + 1);
+            } catch (error) {
+                console.error("Failed to create new note:", error);
             }
-
-    
-
-            if (activeNote) {
-
-                const updatedNotes = notes.map(note =>
-
-                    note.id === activeNote.id ? { ...note, title, content } : note
-
+        } else if (currentActiveNote) {
+            const updatedNote = { ...currentActiveNote, title: currentTitle, content: currentContent };
+            console.log("Updating note:", updatedNote);
+            try {
+                const response = await fetch(`http://localhost:8083/api/Notes/${currentActiveNote.id}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(updatedNote),
+                    }
                 );
 
-                setNotes(updatedNotes);
+                console.log("Update response status:", response.status);
 
-            } else {
-
-                const newNote = {
-
-                    id: Date.now().toString(),
-
-                    title,
-
-                    content,
-
-                };
-
-                const newNotes = [newNote, ...notes];
-
-                setNotes(newNotes);
-
-                setActiveNote(newNote);
-
-            }
-
-            setNoteListRenderKey(prevKey => prevKey + 1);
-
-        }, [activeNote, content, notes, title]);
-
-    
-
-        const titleInputRef = useRef<TextInput>(null);
-
-    
-
-        const handleSelectNote = useCallback((note: Note) => {
-
-            setActiveNote(note);
-
-            setTitle(note.title);
-
-            setContent(note.content);
-
-            if (!isLargeScreen) {
-
-                setMenuVisible(false);
-
-            }
-
-        }, [isLargeScreen]);
-
-    
-
-        const handleNewNote = useCallback(() => {
-
-            setActiveNote(null);
-
-            setTitle('');
-
-            setContent('');
-
-            if (!isLargeScreen) {
-
-                setMenuVisible(false);
-
-            }
-
-        }, [isLargeScreen]);
-
-    
-
-        const handleDelete = useCallback((id: string) => {
-
-            const newNotes = notes.filter(note => note.id !== id);
-
-            setNotes(newNotes);
-
-            setNoteListRenderKey(prevKey => prevKey + 1);
-
-    
-
-            if (activeNote && activeNote.id === id) {
-
-                if (newNotes.length > 0) {
-
-                    handleSelectNote(newNotes[0]);
-
-                } else {
-
-                    handleNewNote();
-
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
 
+                const updatedNotes = currentNotes.map(note =>
+                    note.id === currentActiveNote.id ? updatedNote : note
+                );
+                setNotes(updatedNotes);
+                setNoteListRenderKey(prevKey => prevKey + 1);
+            } catch (error) {
+                console.error(`Failed to update note with id ${currentActiveNote.id}:`, error);
+            }
+        }
+    };
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            handleSave();
+        }, 500);
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [title, content]);
+
+    const handleSelectNote = useCallback((note: Note) => {
+        console.log("Selected note:", note);
+        setActiveNote(note);
+        setTitle(note.title);
+        setContent(note.content);
+        if (!isLargeScreen) {
+            setMenuVisible(false);
+        }
+    }, [isLargeScreen]);
+
+    const handleNewNote = useCallback(async () => {
+        try {
+            const response = await fetch('http://localhost:8083/api/Notes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title: '', content: '' }),
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const newNote = await response.json();
+            setNotes(prevNotes => [newNote, ...prevNotes]);
+            setActiveNote(newNote);
+            setTitle(newNote.title);
+            setContent(newNote.content);
+            setNoteListRenderKey(prevKey => prevKey + 1);
+            if (!isLargeScreen) {
+                setMenuVisible(false);
+            }
+        } catch (error) {
+            console.error("Failed to create new note:", error);
+        }
+    }, [isLargeScreen]);
+
+    const handleDelete = useCallback(async (id: string) => {
+        try {
+            const response = await fetch(`http://localhost:8083/api/Notes/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
 
-        }, [activeNote, notes, handleSelectNote, handleNewNote]);
+            const newNotes = notes.filter(note => note.id !== id);
+            setNotes(newNotes);
+            setNoteListRenderKey(prevKey => prevKey + 1);
 
-    
+            if (activeNote && activeNote.id === id) {
+                if (newNotes.length > 0) {
+                    handleSelectNote(newNotes[0]);
+                } else {
+                    handleNewNote();
+                }
+            }
+        } catch (error) {
+            console.error(`Failed to delete note with id ${id}:`, error);
+        }
+    }, [activeNote, notes, handleSelectNote, handleNewNote]);
 
-        const handleInfoPress = useCallback((index: number) => {
+    const titleInputRef = useRef<TextInput>(null);
 
-            setInfoModalContent(`Note number: ${index + 1}`);
+    const handleInfoPress = useCallback((index: number) => {
+        setInfoModalContent(`Note number: ${index + 1}`);
+        setInfoModalVisible(true);
+    }, []);
 
-            setInfoModalVisible(true);
 
-        }, []);
-
-    
-
-        useEffect(() => {
-
-            const handler = setTimeout(() => {
-
-                handleSave();
-
-            }, 500);
-
-    
-
-            return () => {
-
-                clearTimeout(handler);
-
-            };
-
-        }, [title, content, handleSave]);
 
     
 

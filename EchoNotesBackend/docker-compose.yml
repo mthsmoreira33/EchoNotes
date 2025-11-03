@@ -12,7 +12,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: "mcr.microsoft.com/mssql/server:2019-latest"
@@ -21,3 +22,8 @@ services:
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Your_password123", "-Q", "SELECT 1", "-C"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

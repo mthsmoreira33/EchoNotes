@@ -20,17 +20,45 @@ namespace EchoNotesBackend.Services
             return await _context.Notes.ToListAsync();
         }
 
-        public async Task<Note> CreateNoteAsync(NoteDto noteDto)
+        public async Task<Note> CreateNoteAsync(CreateNoteDto createNoteDto)
         {
             var note = new Note
             {
-                Title = noteDto.Title,
-                Content = noteDto.Content
+                Title = createNoteDto.Title,
+                Content = createNoteDto.Content
             };
 
             _context.Notes.Add(note);
             await _context.SaveChangesAsync();
             return note;
+        }
+
+        public async Task UpdateNoteAsync(Guid id, UpdateNoteDto updateNoteDto)
+        {
+            var note = await _context.Notes.FindAsync(id);
+            if (note == null)
+            {
+                // This case should ideally be handled by the controller, but for robustness
+                throw new KeyNotFoundException($"Note with ID {id} not found.");
+            }
+
+            note.Title = updateNoteDto.Title;
+            note.Content = updateNoteDto.Content;
+
+            _context.Entry(note).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteNoteAsync(Guid id)
+        {
+            var note = await _context.Notes.FindAsync(id);
+            if (note == null)
+            {
+                throw new KeyNotFoundException($"Note with ID {id} not found.");
+            }
+
+            _context.Notes.Remove(note);
+            await _context.SaveChangesAsync();
         }
     }
 }
